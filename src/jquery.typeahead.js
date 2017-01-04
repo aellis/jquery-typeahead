@@ -648,14 +648,13 @@
                     case "input":
 
                         scope.rawQuery = scope.node[0].value.toString();
-
+						scope.query = scope.rawQuery.replace(/^\s+/, '');
+						
                         // #195 Trigger an onCancel event if the Typeahead is cleared
-                        if (scope.rawQuery === "" && scope.query !== "") {
+                        if (scope.rawQuery === "" && scope.query === "") {
                             e.originalEvent = originalEvent || {};
                             scope.helper.executeCallback.call(scope, scope.options.callback.onCancel, [scope.node, e]);
                         }
-
-                        scope.query = scope.rawQuery.replace(/^\s+/, '');
 
                         scope.options.cancelButton && scope.toggleCancelButton();
 
